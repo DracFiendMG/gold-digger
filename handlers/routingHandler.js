@@ -7,11 +7,11 @@ export function handleLive(req, res) {
     res.setHeader('Connection', 'keep-alive')
 
     setInterval(() => {
-        let randomInt = Math.floor(Math.random() * 2) - 1
+        let randomInt = (Math.random() * 5) - 1
         goldPrice += randomInt
         
         res.write(
-            `data: ${JSON.stringify({ event: 'live-price', price: goldPrice })}\n\n`
+            `data: ${JSON.stringify({ event: 'live-price', price: goldPrice.toFixed(2) })}\n\n`
         )
     }, 3000)
 }
