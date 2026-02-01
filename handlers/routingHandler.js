@@ -1,3 +1,7 @@
+import { purchaseEvents } from "../events/purchaseEvents.js"
+import { parseJSONBody } from "../utils/parseJSONBody.js"
+import { sendResponse } from "../utils/sendResponse.js"
+
 export function handleLive(req, res) {
     let goldPrice = 2000.00
     res.statusCode = 200
@@ -16,6 +20,8 @@ export function handleLive(req, res) {
     }, 3000)
 }
 
-export function handlePost(req, res) {
-    
+export async function handlePost(req, res) {
+    const body = await parseJSONBody(req)
+    purchaseEvents.emit('purchase-event', body)
+    sendResponse(res, 200, 'application/json', JSON.stringify({ message: 'Investment received!' }))
 }

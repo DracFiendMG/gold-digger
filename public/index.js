@@ -2,7 +2,7 @@ const eventSource = new EventSource('/api/live-price')
 
 const priceDisplay = document.getElementById('price-display')
 const investBtnEl = document.getElementById('invest-btn')
-const investmentAmount = document.getElementById('investment-amount')
+const investmentAmountEl = document.getElementById('investment-amount')
 const dialogEl = document.querySelector('dialog')
 const purchasedOuncesEl = document.getElementById('purchased-ounces')
 const investedAmountEl = document.getElementById('invested-amount')
@@ -15,16 +15,33 @@ document.getElementById('invest-form').addEventListener('submit', async (e) => {
     e.preventDefault()
 
     const currentPrice = Number(priceDisplay.textContent)
-    const goldPurchased = (investmentAmount.value/currentPrice).toFixed(2)
+    const investmentAmount = investmentAmountEl.value
+    const goldPurchased = (investmentAmount/currentPrice).toFixed(2)
 
     purchasedOuncesEl.textContent = goldPurchased
-    investedAmountEl.textContent = investmentAmount.value
+    investedAmountEl.textContent = investmentAmount
     dialogEl.classList.add('display-dialog')
 
-    try {
-        const response = await fetch('./api')
-    } catch (err) {
+    const payload = {
+        timestamp: new Date(),
+        investmentAmount,
+        currentPrice,
+        goldPurchased
+    }
 
+    try {
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        }
+        const response = await fetch('./api/invest', options)
+        const data = await response.json()
+        console.log(data)
+    } catch (err) {
+        console.error('Error:', err)
     }
 })
 
