@@ -10,7 +10,9 @@ export function handleLive(req, res) {
     res.setHeader('Cache-Control', 'no-cache')
     res.setHeader('Connection', 'keep-alive')
 
-    setInterval(() => {
+    res.write(`data: ${JSON.stringify({ event: 'live-price', price: goldPrice.toFixed(2) })}\n\n`)
+
+    const intervalId = setInterval(() => {
         let randomInt = (Math.random() * 5) - 1
         goldPrice += randomInt
         
@@ -18,6 +20,11 @@ export function handleLive(req, res) {
             `data: ${JSON.stringify({ event: 'live-price', price: goldPrice.toFixed(2) })}\n\n`
         )
     }, 3000)
+
+    req.on('close', () => {
+        clearInterval(intervalId)
+        console.log('SSE client disconnected, cleaned up interval')
+    })
 }
 
 export async function handlePost(req, res) {

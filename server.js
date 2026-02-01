@@ -18,9 +18,9 @@ const server = http.createServer(async (req, res) => {
 
     if (req.url.startsWith('/api')) {
         if (req.url.endsWith('/live-price') && req.method === 'GET') {
-            handleLive(req, res)
+            return handleLive(req, res)
         } else if (req.url.endsWith('/invest') && req.method === 'POST') {
-            handlePost(req, res)
+            return handlePost(req, res)
         }
     } else if (!req.url.startsWith('/api')) {
         serveStatic(req, res, publicDir)

@@ -1,0 +1,5 @@
+{
+  "watch": ["server.js", "handlers", "utils", "events"],
+  "ignore": ["data/*", "public/*"],
+  "ext": "js,json"
+}
