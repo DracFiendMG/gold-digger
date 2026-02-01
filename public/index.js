@@ -1,5 +1,6 @@
 const eventSource = new EventSource('/api/live-price')
 
+const bodyEl = document.querySelector('body')
 const priceDisplay = document.getElementById('price-display')
 const investBtnEl = document.getElementById('invest-btn')
 const investmentAmountEl = document.getElementById('investment-amount')
@@ -9,6 +10,7 @@ const investedAmountEl = document.getElementById('invested-amount')
 
 document.getElementById('ok-btn').addEventListener('click', () => {
     dialogEl.classList.remove('display-dialog')
+    bodyEl.style.pointerEvents = 'auto'
 })
 
 document.getElementById('invest-form').addEventListener('submit', async (e) => {
@@ -21,6 +23,7 @@ document.getElementById('invest-form').addEventListener('submit', async (e) => {
     purchasedOuncesEl.textContent = goldPurchased
     investedAmountEl.textContent = investmentAmount
     dialogEl.classList.add('display-dialog')
+    bodyEl.style.pointerEvents = 'none'
 
     const payload = {
         timestamp: new Date(),

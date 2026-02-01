@@ -156,6 +156,7 @@ input::placeholder {
     top: 50%;
     bottom: 50%;
     box-shadow: 0 0 300px gray;
+    pointer-events: auto;
 }
 
 dialog {
