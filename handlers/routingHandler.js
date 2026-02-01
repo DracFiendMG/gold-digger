@@ -15,3 +15,7 @@ export function handleLive(req, res) {
         )
     }, 3000)
 }
+
+export function handlePost(req, res) {
+    
+}

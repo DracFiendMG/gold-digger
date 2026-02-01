@@ -151,6 +151,13 @@ input::placeholder {
     color: var(--gold);
 }
 
+.display-dialog {
+    display: block;
+    top: 50%;
+    bottom: 50%;
+    box-shadow: 0 0 300px gray;
+}
+
 dialog {
     max-width: 280px;
     border-radius: 10px;
@@ -159,6 +166,7 @@ dialog {
     background-image: linear-gradient(180deg, var(--brown) 70%, var(--dark-gold));
     color: var(--gold);
     padding: 1.5em;
+    z-index: 100;
 }
 
 dialog h2 {
