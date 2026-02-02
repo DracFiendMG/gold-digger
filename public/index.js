@@ -13,12 +13,32 @@ document.getElementById('ok-btn').addEventListener('click', () => {
     bodyEl.style.pointerEvents = 'auto'
 })
 
+document.getElementById('download-pdf-btn').addEventListener('click', async () => {
+    try {
+        const response = await fetch('./api/generate-pdf')
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+        const blob = await response.blob()
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = 'gold-investment-report.pdf'
+        document.body.appendChild(a)
+        a.click()
+        a.remove()
+        window.URL.revokeObjectURL(url)
+    } catch (err) {
+        console.error('Error downloading PDF:', err)
+    }
+})
+
 document.getElementById('invest-form').addEventListener('submit', async (e) => {
     e.preventDefault()
 
     const currentPrice = Number(priceDisplay.textContent)
     const investmentAmount = investmentAmountEl.value
-    const goldPurchased = (investmentAmount/currentPrice).toFixed(2)
+    const goldPurchased = (investmentAmount/currentPrice).toFixed(4)
 
     purchasedOuncesEl.textContent = goldPurchased
     investedAmountEl.textContent = investmentAmount

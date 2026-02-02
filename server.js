@@ -1,7 +1,7 @@
 import http from 'node:http';
 import path from 'node:path'
 import { serveStatic } from './utils/serveStatic.js';
-import { handleLive, handlePost } from './handlers/routingHandler.js';
+import { handleGeneratePDF, handleLive, handlePost } from './handlers/routingHandler.js';
 
 const PORT = 8000
 
@@ -21,6 +21,8 @@ const server = http.createServer(async (req, res) => {
             return handleLive(req, res)
         } else if (req.url.endsWith('/invest') && req.method === 'POST') {
             return handlePost(req, res)
+        } else if (req.url.endsWith('/generate-pdf') && req.method === 'GET') {
+            return handleGeneratePDF(req, res, __dirname)
         }
     } else if (!req.url.startsWith('/api')) {
         serveStatic(req, res, publicDir)

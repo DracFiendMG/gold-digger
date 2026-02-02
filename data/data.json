@@ -28,5 +28,11 @@
     "investmentAmount": "100",
     "currentPrice": 2003.66,
     "goldPurchased": "0.05"
+  },
+  {
+    "timestamp": "2026-02-02T13:44:31.803Z",
+    "investmentAmount": "100",
+    "currentPrice": 2195.81,
+    "goldPurchased": "0.05"
   }
 ]

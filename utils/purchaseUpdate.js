@@ -6,11 +6,6 @@ const filePath = path.join('data', 'data.json')
 export async function purchaseUpdate(payload) {
     console.log(payload)
 
-    let text = ''
-    for (const key in payload) {
-        console.log(key)
-    }
-
     let existingData = await fs.readFile(filePath, 'utf-8')
     let parsedExistingData = existingData ? JSON.parse(existingData) : []
 
@@ -19,4 +14,6 @@ export async function purchaseUpdate(payload) {
         filePath,
         JSON.stringify(parsedExistingData, null, 2)
     )
+
+    console.log('Purchase data updated successfully.')
 }
