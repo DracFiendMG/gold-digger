@@ -102,6 +102,10 @@ label {
     padding: 0 .2em;
 }
 
+#email-label {
+    top: 76px;
+}
+
 input {
     margin-left: 0;
     padding: 1em;
@@ -114,6 +118,12 @@ input {
     background-color: transparent;
     color: var(--gold);
     font-size: 120%;
+}
+
+input[type="email"] {
+    border-left: 2px solid var(--gold);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 input::placeholder {

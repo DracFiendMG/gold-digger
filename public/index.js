@@ -1,6 +1,7 @@
 const eventSource = new EventSource('/api/live-price')
 
 const bodyEl = document.querySelector('body')
+const investFormEl = document.getElementById('invest-form')
 const priceDisplay = document.getElementById('price-display')
 const investBtnEl = document.getElementById('invest-btn')
 const investmentAmountEl = document.getElementById('investment-amount')
@@ -33,11 +34,15 @@ document.getElementById('download-pdf-btn').addEventListener('click', async () =
     }
 })
 
-document.getElementById('invest-form').addEventListener('submit', async (e) => {
+investFormEl.addEventListener('submit', async (e) => {
     e.preventDefault()
 
+    const investForm = new FormData(investFormEl)
+
+    const email = investForm.get('email')
+    const investmentAmount = investForm.get('investment-amount')
+
     const currentPrice = Number(priceDisplay.textContent)
-    const investmentAmount = investmentAmountEl.value
     const goldPurchased = (investmentAmount/currentPrice).toFixed(4)
 
     purchasedOuncesEl.textContent = goldPurchased
@@ -56,7 +61,8 @@ document.getElementById('invest-form').addEventListener('submit', async (e) => {
         const options = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'email': email
             },
             body: JSON.stringify(payload)
         }
