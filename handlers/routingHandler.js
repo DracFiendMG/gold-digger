@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { purchaseEvents } from "../events/purchaseEvents.js"
+import { emailEvents } from "../events/emailEvents.js"
 import { parseJSONBody } from "../utils/parseJSONBody.js"
 import { sendResponse } from "../utils/sendResponse.js"
 import { generatePDF } from "../utils/generatePDF.js"
@@ -31,8 +32,13 @@ export function handleLive(req, res) {
 }
 
 export async function handlePost(req, res) {
+    //TODO: fetch the email from the header and send an email to that user
+    const email = req.headers['email']
+    
+
     const body = await parseJSONBody(req)
     purchaseEvents.emit('purchase-event', body)
+    emailEvents.emit('send-email', email, body)
     sendResponse(res, 200, 'application/json', JSON.stringify({ message: 'Investment received!' }))
 }
 

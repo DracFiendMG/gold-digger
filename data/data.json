@@ -34,5 +34,41 @@
     "investmentAmount": "100",
     "currentPrice": 2195.81,
     "goldPurchased": "0.05"
+  },
+  {
+    "timestamp": "2026-02-03T14:07:56.071Z",
+    "investmentAmount": "10000",
+    "currentPrice": 2006.74,
+    "goldPurchased": "4.9832"
+  },
+  {
+    "timestamp": "2026-02-03T14:08:39.587Z",
+    "investmentAmount": "10000",
+    "currentPrice": 2000,
+    "goldPurchased": "5.0000"
+  },
+  {
+    "timestamp": "2026-02-03T15:06:10.032Z",
+    "investmentAmount": "10000",
+    "currentPrice": 3291.5,
+    "goldPurchased": "3.0381"
+  },
+  {
+    "timestamp": "2026-02-03T15:21:36.667Z",
+    "investmentAmount": "10000",
+    "currentPrice": 2006.48,
+    "goldPurchased": "4.9839"
+  },
+  {
+    "timestamp": "2026-02-03T15:40:49.855Z",
+    "investmentAmount": "100",
+    "currentPrice": 2007.04,
+    "goldPurchased": "0.0498"
+  },
+  {
+    "timestamp": "2026-02-03T16:45:29.598Z",
+    "investmentAmount": "100",
+    "currentPrice": 3835.55,
+    "goldPurchased": "0.0261"
   }
 ]

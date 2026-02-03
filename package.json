@@ -23,6 +23,7 @@
     "nodemon": "^3.1.11"
   },
   "dependencies": {
+    "dotenv": "^17.2.3",
     "emailjs": "^5.0.0",
     "pdfkit": "^0.17.2"
   }
