@@ -6,8 +6,8 @@ const client = new SMTPClient({
     user: username,
     password: process.env.EMAIL_PASSWORD,
     host: process.env.EMAIL_HOST,
-    port: 465,
-    ssl: true
+    port: 587,
+    tls: true
 })
 
 export async function sendEmail(to, body) {

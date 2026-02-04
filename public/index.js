@@ -68,7 +68,6 @@ investFormEl.addEventListener('submit', async (e) => {
         }
         const response = await fetch('./api/invest', options)
         const data = await response.json()
-        console.log(data)
     } catch (err) {
         console.error('Error:', err)
     }
