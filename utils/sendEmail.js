@@ -9,7 +9,8 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: username,
         pass: process.env.EMAIL_PASSWORD
-    }
+    },
+    family: 4 // Force IPv4
 })
 
 export async function sendEmail(to, body) {
