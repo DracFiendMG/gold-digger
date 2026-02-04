@@ -1,13 +1,15 @@
-import { SMTPClient, Message } from 'emailjs'
+import nodemailer from 'nodemailer'
 
 const username = process.env.EMAIL_USERNAME
 
-const client = new SMTPClient({
-    user: username,
-    password: process.env.EMAIL_PASSWORD,
+const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: 587,
-    tls: true
+    secure: false, // true for 465, false for other ports
+    auth: {
+        user: username,
+        pass: process.env.EMAIL_PASSWORD
+    }
 })
 
 export async function sendEmail(to, body) {
@@ -119,27 +121,17 @@ export async function sendEmail(to, body) {
         </html>
     `
 
-    const message = new Message({
+    const mailOptions = {
         from: username,
         to: to,
         subject: 'Your gold investment was successful!',
-        attachment: [
-            {
-                data: htmlContent,
-                alternative: true,
-                contentType: 'text/html'
-            }
-        ]
-    })
+        html: htmlContent
+    }
 
     try {
-        await client.sendAsync(message)
+        await transporter.sendMail(mailOptions)
         console.log('Email sent successfully!')
     } catch (err) {
-        console.error(`Failed to send rich email: ${err}`)
-    } finally {
-        if (client.smtp) {
-            client.smtp.close()
-        }
+        console.error(`Failed to send email: ${err}`)
     }
 }
